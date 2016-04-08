@@ -206,8 +206,7 @@ module Geocoder
       # Set in configuration but not available for every service.
       #
       def protocol
-        # "http" + (use_ssl? ? "s" : "")
-        configuration.https_proxy
+        "http" + (use_ssl? ? "s" : "")
       end
 
       def valid_response?(response)

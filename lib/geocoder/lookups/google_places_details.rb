@@ -17,7 +17,12 @@ module Geocoder
       end
 
       def query_url(query)
-        "#{protocol}://maps.googleapis.com/maps/api/place/details/json?#{url_query_string(query)}"
+        if configuration.proxy_url
+          "#{configuration.proxy_url}/maps.googleapis.com/maps/api/place/details/json?#{url_query_string(query)}"
+        else
+        
+          "#{protocol}://maps.googleapis.com/maps/api/place/details/json?#{url_query_string(query)}"
+        end
       end
 
       private
