@@ -16,7 +16,7 @@ module Geocoder::Lookup
 
     def query_url(query)
       path = "/maps/api/geocode/json?" + url_query_string(query)
-      "#{protocol}://maps.googleapis.com#{path}&signature=#{sign(path)}"
+      "#{protocol}/maps.googleapis.com#{path}&signature=#{sign(path)}"
     end
 
     private # ---------------------------------------------------------------
