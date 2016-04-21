@@ -555,40 +555,39 @@ The [Google Places Details API](https://developers.google.com/places/documentati
 
 #### ESRI (`:esri`)
 
-* **API key**: none
+* **API key**: optional (set `Geocoder.configure(:esri => {:api_key => ["client_id", "client_secret"]})`)
 * **Quota**: Required for some scenarios (see Terms of Service)
 * **Region**: world
 * **SSL support**: yes
 * **Languages**: English
-* **Documentation**: http://resources.arcgis.com/en/help/arcgis-online-geocoding-rest-api/
+* **Documentation**: https://developers.arcgis.com/rest/geocode/api-reference/overview-world-geocoding-service.htm
 * **Terms of Service**: http://www.esri.com/legal/software-license
-* **Limitations**: ?
-* **Notes**: You can specify which projection you want to use by setting, for example: `Geocoder.configure(:esri => {:outSR => 102100})`.
+* **Limitations**: Requires API key if results will be stored. Using API key will also remove rate limit.
+* **Notes**: You can specify which projection you want to use by setting, for example: `Geocoder.configure(:esri => {:outSR => 102100})`. If you will store results, set the flag and provide API key: `Geocoder.configure(:esri => {:api_key => ["client_id", "client_secret"], :for_storage => true})`. If you want to, you can also supply an ESRI token directly: `Geocoder.configure(:esri => {:token => Geocoder::EsriToken.new('TOKEN', Time.now + 1.day})`
 
 #### Mapzen (`:mapzen`)
 
-* **About**: Mapzen is the primary author of pelias and offers Pelias-as-a-service in free and paid versions https://mapzen.com/pelias.
 * **API key**: required
 * **Quota**: 6/sec, up to 30k per day, paid plan info at https://mapzen.com/documentation/search/api-keys-rate-limits/#rate-limits
-* **Region**: World
+* **Region**: world
 * **SSL support**: yes
 * **Languages**: en
 * **Documentation**: https://mapzen.com/documentation/search/search/
 * **Terms of Service**: http://mapzen.com/terms
-* **Limitations**: See terms
+* **Limitations**: ?
+* **Notes**: Mapzen is the primary author of Pelias and offers Pelias-as-a-service in free and paid versions https://mapzen.com/pelias.
 
 #### Pelias (`:pelias`)
 
-* **About**: Pelias is a modular open-source geocoder using ElasticSearch for fast geocoding https://github.com/pelias/pelias.
 * **API key**: required
-* **Quota**: None, self-hosted service.
-* **Region**: World
+* **Quota**: none (self-hosted service)
+* **Region**: world
 * **SSL support**: yes
 * **Languages**: en
 * **Documentation**: https://mapzen.com/documentation/search/search/
 * **Terms of Service**: http://mapzen.com/terms
 * **Limitations**: See terms
-* **Notes**: Configure your self-hosted pelias with the `endpoint` option: `Geocoder.configure(:lookup => :pelias, :api_key => 'your_api_key', :pelias => {:endpoint => 'self.hosted/pelias'})`.  Defaults to `localhost`.
+* **Notes**: Configure your self-hosted pelias with the `endpoint` option: `Geocoder.configure(:lookup => :pelias, :api_key => 'your_api_key', :pelias => {:endpoint => 'self.hosted/pelias'})`. Defaults to `localhost`.
 
 #### Data Science Toolkit (`:dstk`)
 
